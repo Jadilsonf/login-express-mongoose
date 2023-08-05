@@ -21,9 +21,9 @@ const userController = {
     },
 
     
-    login: function (req, res) {
-        console.log('login')
-        res.send('<h1>Login</h1>')
+    login: function () {
+        console.log('LOGIN INICIADO')
+        res.send('<h1>LOGIN INICIADO</h1>')
     }
 }
 
