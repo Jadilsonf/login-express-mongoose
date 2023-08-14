@@ -21,9 +21,14 @@ const userController = {
     },
 
     
-    login: function () {
-        console.log('LOGIN INICIADO')
-        res.send('<h1>LOGIN INICIADO</h1>')
+    login: async function (req, res) {
+        const selectedUser = await User.findOne({email:req.body.email})
+        if (!selectedUser) return res.status(400).send('Email or Password incorrect')
+
+        const passwordAndUserMatch = bcrypt.compareSync(req.body.password, selectedUser.password)
+        if(!passwordAndUserMatch) return res.status(400).send('Email or Password incorrect')
+
+        res.send("User Logged")
     }
 }
 
