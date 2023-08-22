@@ -3,6 +3,7 @@ const cors = require("cors");
 const app = express();
 const mongoose = require('mongoose')
 const userRouter = require('./routes/userRouter')
+const adminRouter = require('./routes/adminRouter')
 require("dotenv").config();
 
 mongoose.connect(process.env.MONGO_CONNECTION_URL, {
@@ -17,7 +18,9 @@ mongoose.connect(process.env.MONGO_CONNECTION_URL, {
 app.use(cors())
 
 //O middleware abaixo está para  './user/login' ou './user/register
-app.use('/user', express.json(), userRouter)
+app.use('/user', express.json(), userRouter);
+
+app.use('/admin', express.json(), adminRouter);
 
 app.listen(process.env.PORT, () => {
     console.log("Servidor Online!")
